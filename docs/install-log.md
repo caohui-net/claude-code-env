@@ -25,7 +25,7 @@
 
 ## 步骤 10：claude-mem 持久记忆插件
 
-**目标**：安装 claude-mem v10.6.1，实现跨会话上下文持久化记忆。
+**目标**：安装 claude-mem，实现跨会话上下文持久化记忆。（初装 v10.6.1，已更新至 v10.6.2）
 
 **来源**：https://github.com/thedotmack/claude-mem
 
@@ -131,12 +131,8 @@ alias claude-mem='CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotm
 
 #### 问题 2：`mcpReady: false`（mcp-server.cjs 路径硬编码）
 - **现象**：Worker 运行但 `mcpReady` 永远为 false，`MCP server connection failed`
-- **原因**：`worker-service.cjs` 第 68286 行 `__dirname` 被硬编码为开发者 Mac 路径 `/Users/alexnewman/...`，导致 `node /Users/alexnewman/.../mcp-server.cjs` 文件不存在
-- **修复**：将该行改为本机路径：
-  ```
-  var __dirname = "/home/caohui/.claude/plugins/marketplaces/thedotmack/plugin/scripts"
-  ```
-- **注意**：插件更新后此修复会被覆盖，需重新应用
+- **原因**：v10.6.1 的 `worker-service.cjs` 中 `__dirname` 被硬编码为开发者 Mac 路径 `/Users/alexnewman/...`
+- **修复**：手动修改该行为本机路径（临时方案）；**v10.6.2 已在上游原生修复，更新后无需任何手动操作**
 
 #### 问题 3：bash 启动卡顿
 - **现象**：新开终端需等待数秒才出现提示符
@@ -147,5 +143,4 @@ alias claude-mem='CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotm
 
 - worker-service.cjs 必须用 **bun** 运行（不能用 node，ES Module 兼容问题）
 - `uvx` 需在 PATH 中，已通过 `/usr/local/bin/uvx` symlink 保证
-- 插件更新后需重新修复 worker-service.cjs 第 68286 行的 `__dirname` 硬编码
 - 手动重启：`kill $(pgrep -f worker-service.cjs) && PATH="$HOME/.local/bin:$PATH" CLAUDE_PLUGIN_ROOT=~/.claude/plugins/marketplaces/thedotmack/plugin bun ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs &`
