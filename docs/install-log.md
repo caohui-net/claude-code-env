@@ -93,9 +93,25 @@ curl http://localhost:37777/api/health
 | `CLAUDE_MEM_DATA_DIR` | ~/.claude-mem | 数据存储目录 |
 | `CLAUDE_MEM_CONTEXT_OBSERVATIONS` | 50 | 注入上下文的 observation 数量 |
 
+### 自动启动配置（~/.bashrc）
+
+已替换原有 alias，加入开机自动启动逻辑：
+
+```bash
+# claude-mem: persistent memory for Claude Code
+alias claude-mem='CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotmack/plugin" bun "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+# auto-start claude-mem worker on shell init
+if ! curl -sf http://localhost:37777/api/health > /dev/null 2>&1; then
+  CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotmack/plugin" \
+    bun "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs" --daemon > /dev/null 2>&1
+fi
+```
+
+逻辑：每次打开新终端时检查 worker 是否运行，未运行则自动以 daemon 模式启动。
+
 ### 注意事项
 
 - worker-service.cjs 必须用 **bun** 运行（不能用 node，ES Module 兼容问题）
 - bun-runner.js 会自动查找 bun 可执行路径，适配 PATH 未刷新的情况
-- Worker 以 daemon 模式运行，重启 Claude Code 后需重新启动 worker
-- 建议将 daemon 启动命令加入 shell 启动脚本（.bashrc/.zshrc）
+- Worker 以 daemon 模式运行，新终端会话自动检测并启动
+- 手动操作：`claude-mem status` / `claude-mem restart` / `claude-mem stop`
