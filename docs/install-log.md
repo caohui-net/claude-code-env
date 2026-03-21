@@ -95,23 +95,57 @@ curl http://localhost:37777/api/health
 
 ### 自动启动配置（~/.bashrc）
 
-已替换原有 alias，加入开机自动启动逻辑：
+**v2（2026-03-22 修复）**：改为全异步非阻塞方式，解决 bash 启动卡顿问题：
 
 ```bash
 # claude-mem: persistent memory for Claude Code
 alias claude-mem='CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotmack/plugin" bun "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
-# auto-start claude-mem worker on shell init
-if ! curl -sf http://localhost:37777/api/health > /dev/null 2>&1; then
-  CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotmack/plugin" \
-    bun "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs" --daemon > /dev/null 2>&1
-fi
+# auto-start claude-mem worker on shell init (async, non-blocking)
+{
+  if ! curl -sf --max-time 1 http://localhost:37777/api/health > /dev/null 2>&1; then
+    PATH="$HOME/.local/bin:$PATH" \
+    CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotmack/plugin" \
+      bun "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs" > /dev/null 2>&1 &
+  fi
+} &
 ```
 
-逻辑：每次打开新终端时检查 worker 是否运行，未运行则自动以 daemon 模式启动。
+逻辑：整个检测+启动逻辑用 `{ } &` 包裹放入后台，bash 初始化不受任何阻塞。
+
+**启动性能基准（2026-03-22 实测，WSL2）**：
+
+| 阶段 | 耗时 |
+|------|------|
+| bash 交互式 shell 启动 | **22ms** |
+| worker `initialized=true` | ~510ms |
+| worker `mcpReady=true`（含 mcp-server 连接）| ~520ms |
+
+三次冷启动测量：520ms / 512ms / 511ms，均值 **514ms**。
+
+### 已知问题与修复记录（2026-03-22）
+
+#### 问题 1：`uvx` 找不到
+- **现象**：`Connection failed: Executable not found in $PATH: "uvx"`
+- **原因**：Worker 进程继承的 PATH 不包含 `~/.local/bin`
+- **修复**：创建 symlink `sudo ln -sf ~/.local/bin/uvx /usr/local/bin/uvx`，并在 bashrc 启动命令中显式注入 `PATH="$HOME/.local/bin:$PATH"`
+
+#### 问题 2：`mcpReady: false`（mcp-server.cjs 路径硬编码）
+- **现象**：Worker 运行但 `mcpReady` 永远为 false，`MCP server connection failed`
+- **原因**：`worker-service.cjs` 第 68286 行 `__dirname` 被硬编码为开发者 Mac 路径 `/Users/alexnewman/...`，导致 `node /Users/alexnewman/.../mcp-server.cjs` 文件不存在
+- **修复**：将该行改为本机路径：
+  ```
+  var __dirname = "/home/caohui/.claude/plugins/marketplaces/thedotmack/plugin/scripts"
+  ```
+- **注意**：插件更新后此修复会被覆盖，需重新应用
+
+#### 问题 3：bash 启动卡顿
+- **现象**：新开终端需等待数秒才出现提示符
+- **原因**：原 bashrc 中 `curl` 检测为同步阻塞，worker 未运行时等待连接超时
+- **修复**：改为 `{ } &` 异步后台执行，bash 启动时间从数秒降至 **22ms**
 
 ### 注意事项
 
 - worker-service.cjs 必须用 **bun** 运行（不能用 node，ES Module 兼容问题）
-- bun-runner.js 会自动查找 bun 可执行路径，适配 PATH 未刷新的情况
-- Worker 以 daemon 模式运行，新终端会话自动检测并启动
-- 手动操作：`claude-mem status` / `claude-mem restart` / `claude-mem stop`
+- `uvx` 需在 PATH 中，已通过 `/usr/local/bin/uvx` symlink 保证
+- 插件更新后需重新修复 worker-service.cjs 第 68286 行的 `__dirname` 硬编码
+- 手动重启：`kill $(pgrep -f worker-service.cjs) && PATH="$HOME/.local/bin:$PATH" CLAUDE_PLUGIN_ROOT=~/.claude/plugins/marketplaces/thedotmack/plugin bun ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs &`
