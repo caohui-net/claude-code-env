@@ -1,0 +1,12 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "YOUR_AUTH_TOKEN",
+    "ANTHROPIC_BASE_URL": "YOUR_BASE_URL_OR_REMOVE",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
+  },
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "hooks": {}
+}
