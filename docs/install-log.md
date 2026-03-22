@@ -139,8 +139,28 @@ alias claude-mem='CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotm
 - **原因**：原 bashrc 中 `curl` 检测为同步阻塞，worker 未运行时等待连接超时
 - **修复**：改为 `{ } &` 异步后台执行，bash 启动时间从数秒降至 **22ms**
 
+#### 问题 4：Stop hook 可能中断执行（2026-03-22）
+
+- **现象**：Stop hook 在某些场景下退出码非零，Claude Code 将其解释为"block stop"，导致执行被中断并反复重试
+- **根本原因**（两层）：
+  1. **误导性 ERROR 日志**：当会话最后一个 assistant 消息为工具调用（`tool_use` 类型，无文本内容）时，`T9()` 函数找不到文本消息，记录 `Missing last_assistant_message` ERROR。这只是日志问题，summarize 实际仍能正常完成。
+  2. **超时竞态**：旧配置 Stop hook 外部 timeout=120s，但内部 HTTP fetch timeout=300s。API 响应慢时，Claude Code 先于 fetch 完成强制 KILL 进程，导致非零退出码。
+- **修复**（`~/.claude/settings.json` Stop hook）：
+  - timeout 从 120s 降至 30s
+  - 命令前加 `sleep 1`（给 transcript 文件写入缓冲时间，避免竞态）
+  - 设置 `CLAUDE_MEM_HEALTH_TIMEOUT_MS=5000`（加速健康检查，从默认 300s 降至 5s）
+  - 命令末尾加 `; exit 0`（**核心修复**：无论命令是否成功，退出码始终为 0，彻底防止 Stop hook 中断执行）
+- **当前 Stop hook 命令**：
+  ```
+  _R="${CLAUDE_PLUGIN_ROOT}"; [ -z "$_R" ] && _R="$HOME/.claude/plugins/marketplaces/thedotmack/plugin"; sleep 1; CLAUDE_MEM_HEALTH_TIMEOUT_MS=5000 node "$_R/scripts/bun-runner.js" "$_R/scripts/worker-service.cjs" hook claude-code summarize; exit 0
+  ```
+- **验证**：worker 运行时 exit=0 ✓，worker 不可用时 exit=0 ✓，完整命令 exit=0 ✓
+
+---
+
 ### 注意事项
 
 - worker-service.cjs 必须用 **bun** 运行（不能用 node，ES Module 兼容问题）
 - `uvx` 需在 PATH 中，已通过 `/usr/local/bin/uvx` symlink 保证
 - 手动重启：`kill $(pgrep -f worker-service.cjs) && PATH="$HOME/.local/bin:$PATH" CLAUDE_PLUGIN_ROOT=~/.claude/plugins/marketplaces/thedotmack/plugin bun ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs &`
+- **Stop hook 规则**：任何 Stop hook 命令末尾必须加 `; exit 0`，防止 hook 失败阻断 Claude Code 执行
