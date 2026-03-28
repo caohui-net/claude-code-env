@@ -164,3 +164,87 @@ alias claude-mem='CLAUDE_PLUGIN_ROOT="$HOME/.claude/plugins/marketplaces/thedotm
 - `uvx` 需在 PATH 中，已通过 `/usr/local/bin/uvx` symlink 保证
 - 手动重启：`kill $(pgrep -f worker-service.cjs) && PATH="$HOME/.local/bin:$PATH" CLAUDE_PLUGIN_ROOT=~/.claude/plugins/marketplaces/thedotmack/plugin bun ~/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs &`
 - **Stop hook 规则**：任何 Stop hook 命令末尾必须加 `; exit 0`，防止 hook 失败阻断 Claude Code 执行
+
+---
+
+### Web Viewer 访问方案（2026-03-29）
+
+**官方限制**：
+前端硬编码 `CLAUDE_MEM_WORKER_HOST: "127.0.0.1"`，直接访问仅支持 localhost。
+
+**解决方案：反向代理**
+
+创建了轻量级 Node.js 反向代理（无额外依赖），支持从任意 IP 访问。
+
+**代理脚本位置**：
+```
+scripts/claude-mem-proxy.js
+```
+
+**启动代理**：
+```bash
+# 启动代理（监听 0.0.0.0:38888，代理到 127.0.0.1:37777）
+node scripts/claude-mem-proxy.js 38888 &
+
+# 或指定其他端口
+node scripts/claude-mem-proxy.js 8080 &
+```
+
+**访问方式**：
+```bash
+# 本地访问（原始方式）
+http://127.0.0.1:37777/
+
+# 通过代理访问（支持任意 IP）
+http://127.0.0.1:38888/
+http://<your-ip>:38888/
+```
+
+**验证**：
+```bash
+# 1. 启动代理
+node scripts/claude-mem-proxy.js 38888 &
+
+# 2. 验证代理工作
+curl -s http://127.0.0.1:38888/health
+
+# 3. 通过 IP 访问
+curl -s http://172.25.22.35:38888/api/observations?limit=1 | jq '.items | length'
+
+# 4. 浏览器访问 http://<your-ip>:38888/
+```
+
+**验证结果（2026-03-29 02:52）**：
+```bash
+# 1. 代理监听确认
+ss -tlnp | grep 38888
+# 输出：0.0.0.0:38888 LISTEN
+
+# 2. JS文件大小验证
+curl -s http://172.25.22.35:38888/viewer-bundle.js | wc -c
+# 输出：267119 (261KB)
+
+# 3. API数据验证
+curl -s http://172.25.22.35:38888/api/observations?limit=1 | jq -r '.items[0].id'
+# 输出：2443 (正常返回数据)
+
+# 4. HTML页面验证
+curl -s http://172.25.22.35:38888/ | grep -c "<!DOCTYPE html>"
+# 输出：1 (页面正常)
+```
+
+**上游改动验证**：
+```bash
+# MD5校验：viewer-bundle.js 与备份完全相同
+md5sum ~/.claude/plugins/marketplaces/thedotmack/plugin/ui/viewer-bundle.js*
+# 9be10695434e9db2dc3df7485ba51646 (两个文件MD5相同)
+```
+
+**结论**：
+- ✅ 上游代码零改动
+- ✅ 解决方案完全独立
+- ✅ 本地访问：直接访问 37777 端口
+- ✅ 远程访问：通过代理访问 38888 端口
+- ✅ 跨机器访问：支持从任意机器访问
+- ✅ 无额外依赖：仅使用 Node.js 内置模块
+- ✅ 上游更新不影响功能
