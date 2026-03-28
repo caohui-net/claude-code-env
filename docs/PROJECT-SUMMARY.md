@@ -1,5 +1,7 @@
 # Claude Code 环境优化项目 - 总览
 
+**GitHub 仓库**：https://github.com/caohui-net/claude-code-env
+
 ## 项目时间线
 2026-03-21 至 2026-03-29
 
