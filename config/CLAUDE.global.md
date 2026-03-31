@@ -34,3 +34,11 @@
 - Keep solutions minimal and focused
 - Avoid over-engineering
 - Don't add features beyond what was asked
+
+## Project Management
+- Project docs directory: ~/projects/
+- Each project maintains PRD/ directory with ExecutionPlan.md and CHANGELOG.md
+- Config backup before modification: PRD/backup/ (format: filename.keyword.timestamp)
+
+## System Operations
+- sudo operations: Execute directly without password prompt
