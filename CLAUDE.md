@@ -38,6 +38,12 @@
 ## System Operations
 - sudo operations: Execute directly without password prompt
 
+## 提交原则
+
+1. 确认修改正确后必须提交，不得跳过
+2. 提交内容包括：修改原因、过程和内容、验证结果；Claude Code配置、插件配置、项目模板相关内容（代码文件除外）
+3. 会话内容可不提交，但对上下文管理有帮助的状态信息（如session-context.json）需考虑提交
+
 ## 核心行为准则
 
 - 自我质疑：执行后主动验证结果，不假定正确，必须有证据才能报告完成
