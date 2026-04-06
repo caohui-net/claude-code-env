@@ -1,0 +1,173 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775487425293,
+  "projectRoot": "/home/caohui/projects/claude-code-env",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs",
+      "scripts"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "config": {
+      "path": "config",
+      "purpose": "Configuration files",
+      "fileCount": 1,
+      "lastAccessed": 1775487425290,
+      "keyFiles": [
+        "CLAUDE.global.md"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 16,
+      "lastAccessed": 1775487425292,
+      "keyFiles": [
+        "DEPLOYMENT-PLAN.md",
+        "PROJECT-SUMMARY.md",
+        "current-state-audit.md",
+        "ecc-integration-summary.md",
+        "ecc-integration.md"
+      ]
+    },
+    "hooks": {
+      "path": "hooks",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1775487425292,
+      "keyFiles": [
+        "hooks.json"
+      ]
+    },
+    "mcp": {
+      "path": "mcp",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1775487425292,
+      "keyFiles": [
+        "mcp-servers.json"
+      ]
+    },
+    "rules": {
+      "path": "rules",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1775487425292,
+      "keyFiles": []
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 1,
+      "lastAccessed": 1775487425292,
+      "keyFiles": [
+        "claude-mem-proxy.js"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "docs/install-log.md",
+      "accessCount": 3,
+      "lastAccessed": 1775492312003,
+      "type": "file"
+    },
+    {
+      "path": "docs/PROJECT-SUMMARY.md",
+      "accessCount": 2,
+      "lastAccessed": 1775492094367,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1775488080920,
+      "type": "directory"
+    },
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 1,
+      "lastAccessed": 1775488091668,
+      "type": "file"
+    },
+    {
+      "path": "docs/memory-system-integration.md",
+      "accessCount": 1,
+      "lastAccessed": 1775488890021,
+      "type": "file"
+    },
+    {
+      "path": "docs/long-term-memory-config.md",
+      "accessCount": 1,
+      "lastAccessed": 1775488890072,
+      "type": "file"
+    },
+    {
+      "path": "docs/final-recommendation.md",
+      "accessCount": 1,
+      "lastAccessed": 1775488890123,
+      "type": "file"
+    },
+    {
+      "path": "docs/integration-optimization.md",
+      "accessCount": 1,
+      "lastAccessed": 1775488890175,
+      "type": "file"
+    },
+    {
+      "path": "docs/memory-failure-diagnosis.md",
+      "accessCount": 1,
+      "lastAccessed": 1775489412341,
+      "type": "file"
+    },
+    {
+      "path": "docs/global-solution-design.md",
+      "accessCount": 1,
+      "lastAccessed": 1775489640236,
+      "type": "file"
+    },
+    {
+      "path": ".project-context.json",
+      "accessCount": 1,
+      "lastAccessed": 1775489675432,
+      "type": "file"
+    },
+    {
+      "path": "docs/global-solution-implementation.md",
+      "accessCount": 1,
+      "lastAccessed": 1775489746832,
+      "type": "file"
+    },
+    {
+      "path": "docs/final-summary.md",
+      "accessCount": 1,
+      "lastAccessed": 1775489833159,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
