@@ -2,3 +2,4 @@ sessions/
 agent-replay-*.jsonl
 state/hud-stdin-cache.json
 state/idle-notif-cooldown.json
+state/subagent-tracking.json
