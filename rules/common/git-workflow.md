@@ -43,3 +43,15 @@ When creating PRs:
 4. **Commit & Push**
    - Detailed commit messages
    - Follow conventional commits format
+
+## Standard Completion Flow (MANDATORY, execute automatically without prompting)
+
+After ANY code change, execute all steps in sequence without stopping:
+
+1. **Check related files** - identify all files affected by the change (docs, README, configs)
+2. **Verify** - read modified files to confirm correctness
+3. **Update change records** - update PROJECT-SUMMARY.md or equivalent docs
+4. **Update session-context** - update `.omc/session-context.json` with latest state
+5. **Commit & push** - single commit including all related changes
+
+Never prompt the user between these steps. Never skip step 3 or 4.
