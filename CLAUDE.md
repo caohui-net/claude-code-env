@@ -19,6 +19,11 @@
 - Commit frequently with descriptive messages
 - Use conventional commits format: `type: description`
 - Never force push to main/master without explicit confirmation
+- **CRITICAL**: Every commit MUST be followed by push to remote
+  - Step 1: `git add <files>`
+  - Step 2: `git commit -m "message"`
+  - Step 3: `git push` (immediately after commit)
+  - Never skip the push step unless explicitly instructed
 
 ## Security
 - Never hardcode secrets or tokens in code
@@ -29,6 +34,23 @@
 - Keep solutions minimal and focused
 - Avoid over-engineering
 - Don't add features beyond what was asked
+- Simplest working solution. No abstractions for single-use operations
+- No speculative features or "you might also want..."
+- No docstrings or type annotations on code not being changed
+- Three similar lines is better than a premature abstraction
+
+## Output Efficiency (Token Optimization)
+- Think before acting. Read existing files before writing code
+- Be concise in output but thorough in reasoning
+- Prefer editing over rewriting whole files
+- Do not re-read files you have already read unless the file may have changed
+- No sycophantic openers or closing fluff
+- Return code first. Explanation after, only if non-obvious
+- No inline prose. Use comments sparingly - only where logic is unclear
+- State the bug. Show the fix. Stop (for reviews)
+- No em dashes, smart quotes, or decorative Unicode symbols
+- Plain hyphens and straight quotes only
+- Code output must be copy-paste safe
 
 ## Project Management
 - Project docs directory: ~/projects/
