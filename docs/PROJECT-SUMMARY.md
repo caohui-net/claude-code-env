@@ -173,6 +173,7 @@ OMC（主控层）
 - 之前只验证组件安装，未验证端到端流程
 - 补全了 CLAUDE.md 要求的会话交接机制
 - 建立了完整的记忆系统（claude-mem + session-context + auto memory）
+- 添加标准完成流程到 `rules/common/git-workflow.md`（提交 `8bcc94b`）
 
 ---
 
