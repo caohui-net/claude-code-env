@@ -70,7 +70,7 @@ cp CLAUDE.md ~/CLAUDE.md
 Choose a profile based on your use case:
 ```bash
 # Code development optimization
-cp profiles/CLAUDE.coding.md ~/CLAUDE.md
+cp profiles/coding/CLAUDE.coding.md ~/CLAUDE.md
 
 # Automation pipelines
 cp profiles/CLAUDE.agents.md ~/CLAUDE.md
