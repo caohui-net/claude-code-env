@@ -3,7 +3,7 @@
 **GitHub 仓库**：https://github.com/caohui-net/claude-code-env
 
 ## 项目时间线
-2026-03-21 至 2026-03-29
+2026-03-21 至 2026-04-12
 
 ## 项目目标
 构建一个具备长期记忆、多代理协同、跨会话恢复能力的 Claude Code 开发环境
@@ -158,6 +158,50 @@ OMC（主控层）
 
 ---
 
+## 阶段八：Token-Efficient 集成（2026-04-12）
+
+**文档**：本次会话记录
+
+**分析对象**：[claude-token-efficient](https://github.com/drona23/claude-token-efficient) - Token 优化配置集合
+
+**集成内容**：
+
+**Profiles（4种可选配置）**：
+- `profiles/CLAUDE.coding.md` - 代码开发优化（~30% token 减少）
+- `profiles/CLAUDE.agents.md` - 自动化流水线（~50% token 减少）
+- `profiles/CLAUDE.analysis.md` - 数据分析任务
+- `profiles/token-efficient/` - 极致成本优化（~63% token 减少）
+
+**语言规范（完整同步）**：
+- `rules/typescript/` - 5个 TypeScript 规范文件
+- `rules/python/` - 5个 Python 规范文件
+- `rules/golang/` - 5个 Golang 规范文件
+
+**Skills（完整同步）**：
+- 9个 Claude Code skills 从本机同步到项目
+- planning-with-files, planning-with-files-zh
+- article-writing, market-research, investor-materials
+- content-engine, frontend-slides, investor-outreach
+- omc-reference
+
+**部署优化**：
+- ✅ 更新 `install.sh`：支持语言规范、skills、profiles 安装（6步流程）
+- ✅ 更新 `README.md`：完整目录结构和使用说明
+- ✅ 创建 `profiles/README.md`：详细对比和使用指南
+
+**集成策略**：
+- ✅ 保留主 CLAUDE.md（功能完整性）
+- ✅ Profiles 作为可选配置（用户按需选择）
+- ✅ 零冲突集成（所有配置互补）
+- ✅ 完整测试（语法检查 + 模拟部署）
+
+**提交记录**：
+- Commit: `086f400`
+- 53 个文件，新增 4874 行
+- 推送到 GitHub 成功
+
+---
+
 ## 最终架构
 
 ```
@@ -179,9 +223,15 @@ Claude Code 环境
 │   ├── findings.md
 │   └── progress.md
 │
-└── ECC (选择性集成)
-    ├── Language Rules (TS/Python/Go)
-    └── Domain Skills (6个)
+├── ECC (选择性集成)
+│   ├── Language Rules (TS/Python/Go)
+│   └── Domain Skills (9个)
+│
+└── Token-Efficient Profiles (可选)
+    ├── CLAUDE.coding.md (代码开发)
+    ├── CLAUDE.agents.md (自动化)
+    ├── CLAUDE.analysis.md (数据分析)
+    └── token-efficient/ (极致优化)
 ```
 
 ---
@@ -192,9 +242,10 @@ Claude Code 环境
 2. **任务追踪** - planning-with-files 显式追踪
 3. **多代理协同** - OMC 编排系统
 4. **多模型支持** - Claude + Codex + Gemini
-5. **语言规范** - ECC 专业规范（TS/Python/Go）
-6. **领域技能** - ECC 商业和内容技能
+5. **语言规范** - ECC 专业规范（TS/Python/Go，各5个文件）
+6. **领域技能** - 9个 ECC 技能（写作/研究/融资等）
 7. **最佳实践** - Git Worktrees + 系统化调试
+8. **Token 优化** - 4种可选 profiles（最高减少 63% 输出）
 
 ---
 
@@ -211,10 +262,17 @@ Claude Code 环境
 - `scripts/claude-mem-proxy.js` - Web Viewer 代理
 
 **规范和技能**：
-- `~/.claude/rules/typescript/` - TS 规范
-- `~/.claude/rules/python/` - Python 规范
-- `~/.claude/rules/golang/` - Go 规范
-- `~/.claude/skills/` - 所有 skills（OMC + ECC）
+- `~/.claude/rules/common/` - 通用规则（8个文件）
+- `~/.claude/rules/typescript/` - TS 规范（5个文件）
+- `~/.claude/rules/python/` - Python 规范（5个文件）
+- `~/.claude/rules/golang/` - Go 规范（5个文件）
+- `~/.claude/skills/` - 9个 skills（OMC + ECC）
+
+**Profiles（可选）**：
+- `profiles/CLAUDE.coding.md` - 代码开发优化
+- `profiles/CLAUDE.agents.md` - 自动化流水线
+- `profiles/CLAUDE.analysis.md` - 数据分析
+- `profiles/token-efficient/` - 极致成本优化
 
 ---
 
@@ -265,23 +323,25 @@ Claude Code 环境
 ✅ **已完成** - 所有阶段验证通过，系统已优化至最佳状态
 
 **完成内容**：
-- 7 个阶段全部完成
+- 8 个阶段全部完成
 - 长期记忆系统部署并验证
 - ECC 语言规范和领域技能集成
 - Superpowers 最佳实践学习
 - 三系统互补优化验证
 - 全局规则集成（零冲突）
+- Token-efficient profiles 集成
 - GitHub 仓库建立并同步
 
 **系统状态**：
 - ✅ 零冲突 - 所有组件互补协作
-- ✅ 完整性 - 覆盖长期记忆、任务追踪、代理编排
-- ✅ 可部署 - 配置文件已收集，部署计划已制定
+- ✅ 完整性 - 覆盖长期记忆、任务追踪、代理编排、token 优化
+- ✅ 可部署 - 一键部署脚本完成并测试通过
+- ✅ 可扩展 - Profiles 机制支持按需选择配置
 
 **下一步**：
 - 日常使用验证
 - 收集用户反馈
-- 实施一键部署（见 DEPLOYMENT-PLAN.md）
+- 持续优化配置
 
 ---
 
@@ -295,4 +355,4 @@ Claude Code 环境
 
 ---
 
-**项目完成时间**：2026-03-31 08:50 AM
+**项目完成时间**：2026-04-12 02:00 PM
