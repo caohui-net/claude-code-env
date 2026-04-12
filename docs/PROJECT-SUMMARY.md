@@ -158,14 +158,21 @@ OMC（主控层）
 
 ---
 
-## 阶段九：路径修复（2026-04-12）
+## 阶段九：路径修复与记忆系统补全（2026-04-12）
 
 **修复内容**：
 
 - `install.sh` 步骤 6：修正 `CLAUDE.coding.md` → `coding/CLAUDE.coding.md`，添加具体使用命令
 - `README.md`：同步修正 profiles 路径引用
+- 初始化 `.omc/session-context.json`：跨会话状态锚点
+- 初始化 `~/.claude/projects/.../memory/MEMORY.md`：auto memory 机制
 
-**提交**：`5d5f35d`
+**提交**：`5d5f35d`, `6b5bb18`, `940e9ab`
+
+**根本问题修复**：
+- 之前只验证组件安装，未验证端到端流程
+- 补全了 CLAUDE.md 要求的会话交接机制
+- 建立了完整的记忆系统（claude-mem + session-context + auto memory）
 
 ---
 
