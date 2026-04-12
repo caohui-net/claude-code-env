@@ -158,6 +158,17 @@ OMC（主控层）
 
 ---
 
+## 阶段九：路径修复（2026-04-12）
+
+**修复内容**：
+
+- `install.sh` 步骤 6：修正 `CLAUDE.coding.md` → `coding/CLAUDE.coding.md`，添加具体使用命令
+- `README.md`：同步修正 profiles 路径引用
+
+**提交**：`5d5f35d`
+
+---
+
 ## 阶段八：Token-Efficient 集成（2026-04-12）
 
 **文档**：本次会话记录
