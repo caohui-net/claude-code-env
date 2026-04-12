@@ -29,21 +29,41 @@ echo "  Done."
 echo ""
 
 # 2. Install rules
-echo "[2/4] Installing rules..."
+echo "[2/6] Installing rules..."
 mkdir -p "$CLAUDE_DIR/rules/common"
 cp "$SCRIPT_DIR/rules/common/"*.md "$CLAUDE_DIR/rules/common/"
-echo "  Installed $(ls "$SCRIPT_DIR/rules/common/" | wc -l) rule files to $CLAUDE_DIR/rules/common/"
+echo "  Installed $(ls "$SCRIPT_DIR/rules/common/" | wc -l) common rule files"
+
+# Install language-specific rules
+for lang in typescript python golang; do
+    if [ -d "$SCRIPT_DIR/rules/$lang" ]; then
+        mkdir -p "$CLAUDE_DIR/rules/$lang"
+        cp "$SCRIPT_DIR/rules/$lang/"*.md "$CLAUDE_DIR/rules/$lang/"
+        echo "  Installed $(ls "$SCRIPT_DIR/rules/$lang/" | wc -l) $lang rule files"
+    fi
+done
 echo ""
 
-# 3. Install hooks config (reference only)
-echo "[3/4] Hooks configuration..."
+# 3. Install skills
+echo "[3/6] Installing skills..."
+if [ -d "$SCRIPT_DIR/skills" ]; then
+    mkdir -p "$CLAUDE_DIR/skills"
+    cp -r "$SCRIPT_DIR/skills/"* "$CLAUDE_DIR/skills/"
+    echo "  Installed $(ls "$SCRIPT_DIR/skills/" | wc -l) skills"
+else
+    echo "  No skills directory found. Skipping."
+fi
+echo ""
+
+# 4. Install hooks config (reference only)
+echo "[4/6] Hooks configuration..."
 echo "  Hooks template is at: $SCRIPT_DIR/hooks/hooks.json"
 echo "  Review it and merge desired hooks into $CLAUDE_DIR/settings.json manually."
 echo "  Or run: cat $SCRIPT_DIR/hooks/hooks.json"
 echo ""
 
-# 4. Install global CLAUDE.md (optional)
-echo "[4/4] Global CLAUDE.md (optional)..."
+# 5. Install global CLAUDE.md (optional)
+echo "[5/6] Global CLAUDE.md (optional)..."
 if [ -f "$HOME/CLAUDE.md" ]; then
     echo "  ~/CLAUDE.md already exists. Skipping."
     echo "  Reference template at: $SCRIPT_DIR/CLAUDE.md"
@@ -57,6 +77,16 @@ else
         echo "  Skipped. Template at: $SCRIPT_DIR/CLAUDE.md"
     fi
 fi
+echo ""
+
+# 6. Profiles information
+echo "[6/6] Optional profiles..."
+echo "  Token-efficient profiles available in: $SCRIPT_DIR/profiles/"
+echo "  See profiles/README.md for usage instructions"
+echo "  - CLAUDE.coding.md: Code development optimization"
+echo "  - CLAUDE.agents.md: Automation pipelines"
+echo "  - CLAUDE.analysis.md: Data analysis tasks"
+echo "  - token-efficient/: Maximum cost optimization"
 echo ""
 
 echo "=== Setup Complete ==="

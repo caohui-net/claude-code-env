@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1775487425293,
+  "lastScanned": 1775970641269,
   "projectRoot": "/home/caohui/projects/claude-code-env",
   "techStack": {
     "languages": [],
@@ -36,7 +36,7 @@
       "path": "config",
       "purpose": "Configuration files",
       "fileCount": 1,
-      "lastAccessed": 1775487425290,
+      "lastAccessed": 1775970641265,
       "keyFiles": [
         "CLAUDE.global.md"
       ]
@@ -44,8 +44,8 @@
     "docs": {
       "path": "docs",
       "purpose": "Documentation",
-      "fileCount": 16,
-      "lastAccessed": 1775487425292,
+      "fileCount": 20,
+      "lastAccessed": 1775970641266,
       "keyFiles": [
         "DEPLOYMENT-PLAN.md",
         "PROJECT-SUMMARY.md",
@@ -58,7 +58,7 @@
       "path": "hooks",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1775487425292,
+      "lastAccessed": 1775970641267,
       "keyFiles": [
         "hooks.json"
       ]
@@ -67,7 +67,7 @@
       "path": "mcp",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1775487425292,
+      "lastAccessed": 1775970641267,
       "keyFiles": [
         "mcp-servers.json"
       ]
@@ -76,20 +76,38 @@
       "path": "rules",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1775487425292,
+      "lastAccessed": 1775970641267,
       "keyFiles": []
     },
     "scripts": {
       "path": "scripts",
       "purpose": "Build/utility scripts",
       "fileCount": 1,
-      "lastAccessed": 1775487425292,
+      "lastAccessed": 1775970641267,
       "keyFiles": [
         "claude-mem-proxy.js"
       ]
     }
   },
   "hotPaths": [
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 10,
+      "lastAccessed": 1775970834729,
+      "type": "file"
+    },
+    {
+      "path": "install.sh",
+      "accessCount": 7,
+      "lastAccessed": 1775973579539,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 7,
+      "lastAccessed": 1775973608829,
+      "type": "file"
+    },
     {
       "path": "docs/install-log.md",
       "accessCount": 3,
@@ -98,21 +116,15 @@
     },
     {
       "path": "docs/PROJECT-SUMMARY.md",
-      "accessCount": 2,
-      "lastAccessed": 1775492094367,
+      "accessCount": 3,
+      "lastAccessed": 1775972150473,
       "type": "file"
     },
     {
       "path": "",
-      "accessCount": 1,
-      "lastAccessed": 1775488080920,
+      "accessCount": 2,
+      "lastAccessed": 1775972150536,
       "type": "directory"
-    },
-    {
-      "path": "CLAUDE.md",
-      "accessCount": 1,
-      "lastAccessed": 1775488091668,
-      "type": "file"
     },
     {
       "path": "docs/memory-system-integration.md",
@@ -166,6 +178,12 @@
       "path": "docs/final-summary.md",
       "accessCount": 1,
       "lastAccessed": 1775489833159,
+      "type": "file"
+    },
+    {
+      "path": "profiles/README.md",
+      "accessCount": 1,
+      "lastAccessed": 1775973510035,
       "type": "file"
     }
   ],
