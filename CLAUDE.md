@@ -25,6 +25,16 @@
   - Step 3: `git push` (immediately after commit)
   - Never skip the push step unless explicitly instructed
 
+## 修改完成强制检查清单（每次修改后必须逐项确认）
+
+完成任何修改后，按顺序执行，不得跳过，不得等待用户提示：
+
+- [ ] 检查所有关联文件是否需要同步修改（docs、README、configs）
+- [ ] 用 Read 工具验证修改内容正确
+- [ ] 更新 PROJECT-SUMMARY.md 或等效变更记录
+- [ ] 更新 `.omc/session-context.json`
+- [ ] git add + commit + push（一次性包含所有变更）
+
 ## Security
 - Never hardcode secrets or tokens in code
 - Use environment variables for sensitive values

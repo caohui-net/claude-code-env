@@ -174,6 +174,7 @@ OMC（主控层）
 - 补全了 CLAUDE.md 要求的会话交接机制
 - 建立了完整的记忆系统（claude-mem + session-context + auto memory）
 - 添加标准完成流程到 `rules/common/git-workflow.md`（提交 `8bcc94b`）
+- 添加强制检查清单到 `CLAUDE.md`，确保每次修改后自动执行完整流程（提交待完成）
 
 ---
 
