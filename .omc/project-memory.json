@@ -107,6 +107,151 @@
       "keyFiles": []
     }
   },
-  "hotPaths": [],
+  "hotPaths": [
+    {
+      "path": "config/CLAUDE.global.md",
+      "accessCount": 6,
+      "lastAccessed": 1777744606802,
+      "type": "file"
+    },
+    {
+      "path": "rules/common/git-workflow.md",
+      "accessCount": 4,
+      "lastAccessed": 1777744679076,
+      "type": "file"
+    },
+    {
+      "path": "install.sh",
+      "accessCount": 4,
+      "lastAccessed": 1777745341862,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 3,
+      "lastAccessed": 1777742257516,
+      "type": "file"
+    },
+    {
+      "path": "docs/codex-evaluation-report-2026-05-02.md",
+      "accessCount": 2,
+      "lastAccessed": 1777740067529,
+      "type": "file"
+    },
+    {
+      "path": "docs/IMPLEMENTATION-PLAN-v1.md",
+      "accessCount": 2,
+      "lastAccessed": 1777742160123,
+      "type": "file"
+    },
+    {
+      "path": "docs/PROJECT-SUMMARY.md",
+      "accessCount": 2,
+      "lastAccessed": 1777742173374,
+      "type": "file"
+    },
+    {
+      "path": "project-state.json",
+      "accessCount": 2,
+      "lastAccessed": 1777742216352,
+      "type": "file"
+    },
+    {
+      "path": "hooks/hooks.reference.json",
+      "accessCount": 2,
+      "lastAccessed": 1777743799552,
+      "type": "file"
+    },
+    {
+      "path": "scripts/claude-mem-proxy.js",
+      "accessCount": 2,
+      "lastAccessed": 1777744510786,
+      "type": "file"
+    },
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 2,
+      "lastAccessed": 1777744544683,
+      "type": "file"
+    },
+    {
+      "path": "docs/IMPLEMENTATION-PLAN-v1-part2.md",
+      "accessCount": 2,
+      "lastAccessed": 1777745105215,
+      "type": "file"
+    },
+    {
+      "path": ".codex-evaluation-prompt.md",
+      "accessCount": 1,
+      "lastAccessed": 1777739664236,
+      "type": "file"
+    },
+    {
+      "path": ".codex-improvement-proposal.md",
+      "accessCount": 1,
+      "lastAccessed": 1777740457146,
+      "type": "file"
+    },
+    {
+      "path": ".codex-discussion-round2.md",
+      "accessCount": 1,
+      "lastAccessed": 1777740809889,
+      "type": "file"
+    },
+    {
+      "path": "scripts/generate-project-context.sh",
+      "accessCount": 1,
+      "lastAccessed": 1777742623750,
+      "type": "file"
+    },
+    {
+      "path": ".project-context.json",
+      "accessCount": 1,
+      "lastAccessed": 1777742649380,
+      "type": "file"
+    },
+    {
+      "path": "hooks/hooks.json",
+      "accessCount": 1,
+      "lastAccessed": 1777743528780,
+      "type": "file"
+    },
+    {
+      "path": "hooks/hooks.minimal.json",
+      "accessCount": 1,
+      "lastAccessed": 1777743566115,
+      "type": "file"
+    },
+    {
+      "path": "hooks/README.md",
+      "accessCount": 1,
+      "lastAccessed": 1777743944525,
+      "type": "file"
+    },
+    {
+      "path": "scripts/verify-hooks.sh",
+      "accessCount": 1,
+      "lastAccessed": 1777744042308,
+      "type": "file"
+    },
+    {
+      "path": "scripts/verify-repo.sh",
+      "accessCount": 1,
+      "lastAccessed": 1777744379781,
+      "type": "file"
+    },
+    {
+      "path": "scripts/verify-installation.sh",
+      "accessCount": 1,
+      "lastAccessed": 1777744419930,
+      "type": "file"
+    },
+    {
+      "path": "config/CLAUDE.personal.md.example",
+      "accessCount": 1,
+      "lastAccessed": 1777744692662,
+      "type": "file"
+    }
+  ],
   "userDirectives": []
 }
