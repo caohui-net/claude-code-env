@@ -158,6 +158,33 @@ OMC（主控层）
 
 ---
 
+## 阶段十：.omc 版本控制策略修正（2026-05-02）
+
+**问题根源**：
+- 1c7121b 提交时 `.omc/.gitignore` 配置不完整
+- `hud-state.json` 不应该被提交（会话级状态）
+- `observations/` 和 `checkpoints/` 未被排除，导致运行时文件被跟踪
+
+**修复内容**：
+1. 更新 `.omc/.gitignore`，添加运行时文件排除：
+   - `observations/` - OMC 运行时观察记录
+   - `state/hud-state.json` - 会话状态
+   - `state/last-tool-error.json` - 错误日志
+   - `state/checkpoints/` - 会话检查点
+
+2. 从版本控制移除 `hud-state.json`
+
+3. 更新 `project-memory.json`（正常的项目扫描更新）
+
+**提交**：`a5a0c47`
+
+**验证结果**：
+- ✅ `.omc/.gitignore` 包含所有运行时文件
+- ✅ 只保留项目级配置文件在版本控制中
+- ✅ 运行时状态文件不再被跟踪
+
+---
+
 ## 阶段九：路径修复与记忆系统补全（2026-04-12）
 
 **修复内容**：
@@ -174,7 +201,7 @@ OMC（主控层）
 - 补全了 CLAUDE.md 要求的会话交接机制
 - 建立了完整的记忆系统（claude-mem + session-context + auto memory）
 - 添加标准完成流程到 `rules/common/git-workflow.md`（提交 `8bcc94b`）
-- 添加强制检查清单到 `CLAUDE.md`，确保每次修改后自动执行完整流程（提交待完成）
+- 添加强制检查清单到 `CLAUDE.md`，确保每次修改后自动执行完整流程（提交 `06c1eb1`）
 
 ---
 
