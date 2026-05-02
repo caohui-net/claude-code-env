@@ -1,17 +1,29 @@
 {
-  "name": "claude-code-env",
-  "type": "configuration",
-  "status": "completed",
-  "summary_file": "docs/PROJECT-SUMMARY.md",
-  "last_updated": "2026-03-31",
-  "phases_completed": 7,
-  "memory_systems": ["claude-mem", "OMC", "planning-with-files"],
-  "tech_stack": {
-    "languages": [],
-    "frameworks": [],
-    "tools": ["claude-mem", "oh-my-claudecode", "planning-with-files"]
-  },
-  "notes": "Claude Code 环境优化项目 - 构建具备长期记忆、多代理协同、跨会话恢复能力的开发环境",
-  "github": "https://github.com/caohui-net/claude-code-env",
-  "purpose": "环境模板项目，为所有项目提供可复用的配置"
+  "_generated": true,
+  "_source": "project-state.json",
+  "_generated_at": "2026-05-02T17:24:02Z",
+  "project": "claude-code-env",
+  "status": "active",
+  "last_updated": "2026-05-02",
+  "completed_phases": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "key_files": {
+    "readme": "README.md",
+    "summary": "docs/PROJECT-SUMMARY.md",
+    "installer": "install.sh",
+    "mcp_project_config": ".mcp.json"
+  }
 }

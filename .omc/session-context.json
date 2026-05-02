@@ -39,5 +39,5 @@
     "lightpanda_vs_curl": "docs/lightpanda-vs-curl-comparison.md",
     "mcp_config": ".mcp.json"
   },
-  "notes": "执行 P0 改进方案：任务1.1已完成（创建 project-state.json），任务1.2进行中（调整 session-context.json）"
+  "notes": "执行 P0 改进方案：阶段一任务1.1-1.3已完成（配置事实源统一），任务1.4进行中（清理 .omc 运行时文件）"
 }
