@@ -39,5 +39,5 @@
     "lightpanda_vs_curl": "docs/lightpanda-vs-curl-comparison.md",
     "mcp_config": ".mcp.json"
   },
-  "notes": "执行 P0 改进方案：阶段一已完成，阶段二任务2.1已完成（拆分 hooks 配置），任务2.2进行中（创建 hooks 验证脚本）"
+  "notes": "执行 P0 改进方案：阶段一、二已完成，阶段四进行中（验证脚本）"
 }
