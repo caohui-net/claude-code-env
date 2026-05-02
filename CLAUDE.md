@@ -15,6 +15,15 @@
 - Use parallel tool calls when operations are independent
 - Prefer Edit over Write for modifying existing files
 
+### Web Content Tools
+- **Default for web pages**: Use Lightpanda MCP tools (节省 65-75% token)
+  - 网页内容提取 → `mcp__lightpanda__goto` + `mcp__lightpanda__markdown`
+  - 链接收集 → `mcp__lightpanda__goto` + `mcp__lightpanda__links`
+  - 表单分析 → `mcp__lightpanda__goto` + `mcp__lightpanda__detectForms`
+- **Use curl for**: API 端点、文件下载、简单静态页面（速度优先）
+- **Fallback**: Lightpanda 失败时尝试 curl（提示可能缺少动态内容）
+- **Reference**: 详见 `docs/lightpanda-vs-curl-comparison.md`
+
 ## Git Workflow
 - Commit frequently with descriptive messages
 - Use conventional commits format: `type: description`
