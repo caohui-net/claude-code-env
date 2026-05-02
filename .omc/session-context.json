@@ -39,5 +39,5 @@
     "lightpanda_vs_curl": "docs/lightpanda-vs-curl-comparison.md",
     "mcp_config": ".mcp.json"
   },
-  "notes": "执行 P0 改进方案：阶段一、二、四、五已完成，阶段三（install.sh 重构）待执行"
+  "notes": "P0 改进方案全部完成：阶段一（配置事实源统一）、阶段二（hooks 依赖明确化）、阶段三（install.sh 重构）、阶段四（验证脚本）、阶段五（安全加固）。等待 Architect 最终验证。"
 }
