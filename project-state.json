@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "claude-code-env",
+    "status": "active",
+    "repository": "https://github.com/caohui-net/claude-code-env",
+    "summary_file": "docs/PROJECT-SUMMARY.md"
+  },
+  "last_updated": "2026-05-02",
+  "phases": [
+    {
+      "id": 1,
+      "name": "环境审计",
+      "completed_at": "2026-03-21",
+      "summary": "基础 OMC 已安装，缺少长期记忆系统",
+      "documents": ["docs/current-state-audit.md", "docs/env-check-2026-03-21.md"]
+    },
+    {
+      "id": 2,
+      "name": "长期记忆集成",
+      "completed_at": "2026-03-28",
+      "summary": "安装 claude-mem v10.6.2，配置 SQLite + Chroma",
+      "documents": ["docs/memory-system-integration.md", "docs/long-term-memory-config.md"]
+    },
+    {
+      "id": 3,
+      "name": "claude-mem 部署验证",
+      "completed_at": "2026-03-29",
+      "summary": "Web Viewer 远程访问，反向代理架构",
+      "documents": ["docs/install-log.md"]
+    },
+    {
+      "id": 4,
+      "name": "ECC 选择性集成",
+      "completed_at": "2026-03-29",
+      "summary": "集成 ECC 语言规范和领域技能",
+      "documents": ["docs/ecc-integration.md", "docs/ecc-test-report.md"]
+    },
+    {
+      "id": 5,
+      "name": "Superpowers 分析",
+      "completed_at": "2026-03-29",
+      "summary": "分析 Superpowers 框架，决定不集成",
+      "documents": ["docs/superpowers-analysis.md"]
+    },
+    {
+      "id": 6,
+      "name": "系统集成优化",
+      "completed_at": "2026-03-29",
+      "summary": "验证三系统互补关系，零冲突",
+      "documents": ["docs/integration-optimization.md"]
+    },
+    {
+      "id": 7,
+      "name": "全局规则集成",
+      "completed_at": "2026-03-31",
+      "summary": "90% 规则已存在，添加项目管理和 sudo 规则",
+      "documents": ["docs/global-rules-integration.md"]
+    },
+    {
+      "id": 8,
+      "name": "Token-Efficient 集成",
+      "completed_at": "2026-04-12",
+      "summary": "集成 token-efficient 配置文件",
+      "documents": []
+    },
+    {
+      "id": 9,
+      "name": "路径修复与记忆系统补全",
+      "completed_at": "2026-04-12",
+      "summary": "修复路径问题，补全记忆系统",
+      "documents": []
+    },
+    {
+      "id": 10,
+      "name": ".omc 版本控制策略修正",
+      "completed_at": "2026-05-02",
+      "summary": "更新 .gitignore，移除运行时文件",
+      "documents": []
+    },
+    {
+      "id": 11,
+      "name": "Lightpanda Browser 集成",
+      "completed_at": "2026-05-02",
+      "summary": "集成 Lightpanda 无头浏览器和 MCP 服务器",
+      "documents": ["docs/lightpanda-integration-analysis.md", "docs/lightpanda-usage.md", "docs/lightpanda-ai-usage-guide.md"]
+    },
+    {
+      "id": 12,
+      "name": "RTK (Rust Token Killer) 集成",
+      "completed_at": "2026-05-02",
+      "summary": "集成 RTK v0.38.0 实现 token 优化",
+      "documents": []
+    },
+    {
+      "id": 13,
+      "name": "Codex 项目评估",
+      "completed_at": "2026-05-02",
+      "summary": "使用 Codex 评估项目，平均分 6.2/10",
+      "documents": ["docs/codex-evaluation-report-2026-05-02.md"]
+    }
+  ],
+  "components": {
+    "omc": {
+      "status": "integrated",
+      "declared_version": "4.10.2",
+      "role": "orchestration"
+    },
+    "claude_mem": {
+      "status": "integrated",
+      "declared_version": "10.6.2",
+      "role": "long_term_memory"
+    },
+    "lightpanda": {
+      "status": "integrated",
+      "declared_version": "0.5.0",
+      "role": "web_automation"
+    },
+    "rtk": {
+      "status": "integrated",
+      "declared_version": "0.38.0",
+      "role": "token_optimization"
+    }
+  },
+  "key_files": {
+    "readme": "README.md",
+    "summary": "docs/PROJECT-SUMMARY.md",
+    "installer": "install.sh",
+    "mcp_project_config": ".mcp.json"
+  }
+}

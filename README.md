@@ -18,6 +18,12 @@ Personal Claude Code environment configuration for quick setup on new machines.
 | `CLAUDE.md` | Global `~/CLAUDE.md` template |
 | `install.sh` | One-click setup script |
 
+## 项目状态文件
+
+- `project-state.json`：人工维护的项目级事实源（包含阶段、组件、关键文件）
+- `.omc/session-context.json`：当前/最近会话状态（会话级信息）
+- `.project-context.json`：兼容旧流程的生成文件（自动生成，不要手动编辑）
+
 ## Quick Start
 
 ```bash
