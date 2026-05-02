@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lightpanda": {
+      "command": "/usr/local/bin/lightpanda",
+      "args": ["mcp"]
+    }
+  }
+}

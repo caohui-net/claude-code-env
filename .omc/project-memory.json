@@ -110,8 +110,26 @@
   "hotPaths": [
     {
       "path": "docs/PROJECT-SUMMARY.md",
+      "accessCount": 8,
+      "lastAccessed": 1777719767606,
+      "type": "file"
+    },
+    {
+      "path": "docs/lightpanda-integration-analysis.md",
       "accessCount": 1,
-      "lastAccessed": 1777691510904,
+      "lastAccessed": 1777719449151,
+      "type": "file"
+    },
+    {
+      "path": ".mcp.json",
+      "accessCount": 1,
+      "lastAccessed": 1777719663658,
+      "type": "file"
+    },
+    {
+      "path": "docs/lightpanda-usage.md",
+      "accessCount": 1,
+      "lastAccessed": 1777719722138,
       "type": "file"
     }
   ],

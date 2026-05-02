@@ -185,6 +185,60 @@ OMC（主控层）
 
 ---
 
+## 阶段十一：Lightpanda Browser 集成（2026-05-02）
+
+**集成目标**：
+- 为 Claude Code 环境添加轻量级无头浏览器能力
+- 支持 AI 代理 Web 自动化
+- 提供 MCP 服务器集成
+
+**实施内容**：
+
+1. **安装 Lightpanda Browser**
+   - 版本：1.0.0-nightly.5982+47041859
+   - 安装路径：`/usr/local/bin/lightpanda`
+   - 下载方式：wget（121MB 二进制文件）
+
+2. **MCP 服务器配置**
+   - 创建 `.mcp.json` 配置文件
+   - 配置 Lightpanda MCP 服务器
+
+3. **文档创建**
+   - `docs/lightpanda-integration-analysis.md` - 集成价值分析
+   - `docs/lightpanda-usage.md` - 使用指南和示例
+
+**核心优势**：
+- 内存占用：123MB vs Chrome 2GB（~16倍更少）
+- 执行速度：5s vs Chrome 46s（~9倍更快）
+- 单二进制部署，无复杂依赖
+
+**集成方式**：
+1. **MCP 服务器**（推荐）- 原生集成到 Claude Code
+2. **CDP 服务器 + Puppeteer** - 兼容现有脚本
+3. **CLI 工具** - 快速简单的命令行使用
+
+**应用场景**：
+- AI 代理 Web 自动化（与 OMC 协同）
+- 文档和内容抓取（转换为 Markdown）
+- 市场研究和数据收集（配合 market-research skill）
+- 测试和验证（E2E 测试）
+
+**限制**：
+- Beta 阶段，可能遇到错误
+- Web API 覆盖不完整
+- CORS 未实现
+- 无图形渲染（不支持截图）
+
+**提交**：待提交
+
+**验证结果**：
+- ✅ Lightpanda 安装成功并可执行
+- ✅ MCP 配置文件创建
+- ✅ 集成分析文档完成
+- ✅ 使用指南文档完成
+
+---
+
 ## 阶段九：路径修复与记忆系统补全（2026-04-12）
 
 **修复内容**：
