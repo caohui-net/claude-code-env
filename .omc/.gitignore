@@ -1,5 +1,9 @@
 sessions/
 agent-replay-*.jsonl
+observations/
 state/hud-stdin-cache.json
 state/idle-notif-cooldown.json
+state/hud-state.json
+state/last-tool-error.json
 state/subagent-tracking.json
+state/checkpoints/
