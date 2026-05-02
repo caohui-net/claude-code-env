@@ -207,6 +207,7 @@ OMC（主控层）
    - `docs/lightpanda-integration-analysis.md` - 集成价值分析
    - `docs/lightpanda-usage.md` - 使用指南和示例
    - `docs/lightpanda-ai-usage-guide.md` - AI 自动触发规则和使用场景
+   - `docs/lightpanda-vs-curl-comparison.md` - 与 curl 工具对比，智能选择策略
 
 **核心优势**：
 - 内存占用：123MB vs Chrome 2GB（~16倍更少）
