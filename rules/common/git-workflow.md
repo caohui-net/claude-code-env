@@ -1,5 +1,11 @@
 # Git Workflow
 
+## Push Policy
+
+- After committing, ask whether to push to remote unless the user has explicitly requested push
+- Never force push to main/master without explicit confirmation
+- Individual projects may override this in their CLAUDE.md for more aggressive workflows
+
 ## Commit Message Format
 
 ```

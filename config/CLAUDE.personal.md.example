@@ -1,0 +1,30 @@
+# 个人环境覆盖示例
+
+本文件展示如何在个人环境中覆盖全局安全默认值。
+
+## System Operations
+- sudo operations: Execute directly without password prompt
+
+## Git Workflow
+- Every commit MUST be followed by push to remote
+- Never skip the push step unless explicitly instructed
+
+## 使用方法
+
+将此文件的内容复制到以下位置之一：
+1. 项目根目录的 CLAUDE.md（仅影响当前项目）
+2. ~/.claude/CLAUDE.md（影响所有项目）
+
+或者合并到现有的 CLAUDE.md 文件中。
+
+## 注意事项
+
+这些设置会覆盖全局的安全默认值，适用于：
+- 个人开发环境
+- 信任的私有项目
+- 需要快速迭代的场景
+
+不适用于：
+- 共享开发环境
+- 生产环境
+- 协作项目

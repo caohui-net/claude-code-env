@@ -19,11 +19,7 @@
 - Commit frequently with descriptive messages
 - Use conventional commits format: `type: description`
 - Never force push to main/master without explicit confirmation
-- **CRITICAL**: Every commit MUST be followed by push to remote
-  - Step 1: `git add <files>`
-  - Step 2: `git commit -m "message"`
-  - Step 3: `git push` (immediately after commit)
-  - Never skip the push step unless explicitly instructed
+- After committing, ask whether to push to remote unless the user has explicitly requested push
 
 ## Security
 - Never hardcode secrets or tokens in code
@@ -41,4 +37,5 @@
 - Config backup before modification: PRD/backup/ (format: filename.keyword.timestamp)
 
 ## System Operations
-- sudo operations: Execute directly without password prompt
+- sudo operations: Ask for confirmation before executing.
+- For personal environments, you may override this in your local CLAUDE.md
