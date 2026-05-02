@@ -39,5 +39,5 @@
     "lightpanda_vs_curl": "docs/lightpanda-vs-curl-comparison.md",
     "mcp_config": ".mcp.json"
   },
-  "notes": "执行 P0 改进方案：阶段一、二已完成，阶段四进行中（验证脚本）"
+  "notes": "执行 P0 改进方案：阶段一、二、四已完成，阶段五进行中（安全加固）"
 }
