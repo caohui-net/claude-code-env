@@ -8,8 +8,10 @@
   "pending": [],
   "verification_evidence": {
     "lightpanda_mcp_loaded": "22个 mcp__lightpanda__* 工具可用",
-    "navigation_test": "成功访问 https://example.com",
+    "navigation_test": "成功访问 https://example.com 和 https://news.ycombinator.com",
     "content_extraction": "成功提取 Markdown 内容",
+    "link_extraction": "成功从 HN 首页提取 200+ 链接",
+    "usage_guide_created": "docs/lightpanda-ai-usage-guide.md",
     "test_time": "2026-05-02T11:10:29Z"
   },
   "key_files": {
@@ -23,5 +25,5 @@
     "lightpanda_usage": "docs/lightpanda-usage.md",
     "mcp_config": ".mcp.json"
   },
-  "notes": "阶段十一完成：集成 Lightpanda Browser (v1.0.0-nightly.5982)，配置 MCP 服务器，创建集成文档。性能优势：内存占用减少16倍，执行速度提升9倍"
+  "notes": "阶段十一完成：集成 Lightpanda Browser (v1.0.0-nightly.5982)，配置 MCP 服务器，创建集成文档和 AI 使用指南。性能优势：内存占用减少16倍，执行速度提升9倍。已验证自动触发场景和工具组合模式"
 }

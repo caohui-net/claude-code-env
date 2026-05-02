@@ -206,6 +206,7 @@ OMC（主控层）
 3. **文档创建**
    - `docs/lightpanda-integration-analysis.md` - 集成价值分析
    - `docs/lightpanda-usage.md` - 使用指南和示例
+   - `docs/lightpanda-ai-usage-guide.md` - AI 自动触发规则和使用场景
 
 **核心优势**：
 - 内存占用：123MB vs Chrome 2GB（~16倍更少）
@@ -237,9 +238,11 @@ OMC（主控层）
 - ✅ 集成分析文档完成
 - ✅ 使用指南文档完成
 - ✅ MCP 服务器成功加载（22个工具可用）
-- ✅ 导航功能测试通过（example.com）
+- ✅ 导航功能测试通过（example.com, news.ycombinator.com）
 - ✅ 内容提取功能测试通过（Markdown）
-- ✅ Web 自动化能力验证完成
+- ✅ 链接提取功能测试通过（HN 首页 200+ 链接）
+- ✅ AI 使用指南创建完成（6大触发场景，5种工具组合模式）
+- ✅ Web 自动化能力完全验证
 
 ---
 
