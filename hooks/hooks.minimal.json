@@ -7,6 +7,18 @@
     "description": "Zero external dependencies, inline scripts only"
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(dirname \"$0\")/../../scripts/session-start-context.sh\" 2>/dev/null || bash \"$(pwd)/scripts/session-start-context.sh\" 2>/dev/null || true",
+            "description": "[claude-code-env:minimal] Auto-restore project context on session start"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",

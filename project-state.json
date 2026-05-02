@@ -127,5 +127,16 @@
     "summary": "docs/PROJECT-SUMMARY.md",
     "installer": "install.sh",
     "mcp_project_config": ".mcp.json"
+  },
+  "current_focus": "跨会话上下文恢复方案已完成，等待实际使用验证",
+  "next_actions": [
+    "在新会话中测试SessionStart hook自动恢复上下文",
+    "验证project-state.json作为事实源的有效性",
+    "根据实际使用反馈优化恢复机制"
+  ],
+  "open_decisions": [],
+  "recovery": {
+    "read_first": ["project-state.json", ".omc/session-context.json"],
+    "read_if_needed": ["docs/PROJECT-SUMMARY.md"]
   }
 }

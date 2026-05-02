@@ -1,0 +1,88 @@
+{
+  "project": "claude-code-env 跨会话上下文恢复",
+  "goal": "彻底解决从项目退出后再进入项目时的记忆断层问题",
+  "success_criteria": [
+    "新会话启动时自动恢复项目上下文",
+    "无需手动读取 PROJECT-SUMMARY.md",
+    "会话间工作连续性强",
+    "状态文件零漂移"
+  ],
+  "user_stories": [
+    {
+      "id": 1,
+      "title": "增强 project-state.json 字段",
+      "description": "添加 current_focus、next_actions、open_decisions、recovery 字段，让 Claude 在 30 秒内知道项目状态和下一步",
+      "acceptance_criteria": [
+        "project-state.json 包含 current_focus 字段",
+        "project-state.json 包含 next_actions 数组",
+        "project-state.json 包含 open_decisions 数组",
+        "project-state.json 包含 recovery.read_first 数组",
+        "字段内容准确反映当前项目状态"
+      ],
+      "passes": true
+    },
+    {
+      "id": 2,
+      "title": "创建自包含 session-start-context.sh",
+      "description": "创建仓库自包含的启动脚本，读取 project-state.json 并输出摘要，不依赖 OMC 外部脚本",
+      "acceptance_criteria": [
+        "scripts/session-start-context.sh 存在",
+        "脚本读取 project-state.json",
+        "脚本输出项目名称、状态、当前焦点",
+        "脚本提示需要读取的其他文件",
+        "脚本不依赖 ${CLAUDE_PLUGIN_ROOT}",
+        "脚本可独立运行"
+      ],
+      "passes": true
+    },
+    {
+      "id": 3,
+      "title": "配置 SessionStart hook",
+      "description": "在 hooks.minimal.json 中添加 SessionStart hook，调用 session-start-context.sh",
+      "acceptance_criteria": [
+        "hooks.minimal.json 包含 SessionStart hook",
+        "hook 调用 scripts/session-start-context.sh",
+        "hook 不依赖 OMC 外部脚本",
+        "hook 描述标记为 [claude-code-env:minimal]"
+      ],
+      "passes": true
+    },
+    {
+      "id": 4,
+      "title": "修改 CLAUDE.md 会话开始规则",
+      "description": "更新 CLAUDE.md 的会话交接机制，明确 project-state.json 为第一优先级",
+      "acceptance_criteria": [
+        "CLAUDE.md 会话开始规则第一步是读取 project-state.json",
+        "明确三者优先级：project-state.json > session-context.json > PROJECT-SUMMARY.md",
+        "规则清晰可执行"
+      ],
+      "passes": true
+    },
+    {
+      "id": 5,
+      "title": "增强 verify-repo.sh 一致性校验",
+      "description": "增强验证脚本，检查 project-state.json、.project-context.json、session-context.json 的一致性",
+      "acceptance_criteria": [
+        "verify-repo.sh 检查 phase id 列表一致性",
+        "verify-repo.sh 检查 summary 文件存在性",
+        "verify-repo.sh 检查 documents 路径存在性",
+        "verify-repo.sh 检查 session-context 引用的 project_state.last_seen_updated 与 project-state.json.last_updated 一致",
+        "不一致时 FAIL（不只是 WARN）"
+      ],
+      "passes": true
+    }
+  ],
+  "out_of_scope": [
+    "JSON Schema 验证（P1）",
+    "pre-commit hook（P1）",
+    "SessionEnd 自动更新（P1）",
+    "claude-mem 按项目名检索（P1）",
+    "summary 自动摘要（P1）"
+  ],
+  "technical_notes": {
+    "codex_consensus": "事实源 + 自动启动注入 + 一致性验证 三者闭环",
+    "claude_mem_role": "辅助搜索历史，不承担启动恢复主责任",
+    "update_responsibility": "人工/Claude 编辑 project-state.json 和 session-context.json，.project-context.json 由脚本生成",
+    "verification_timing": "修改 project-state.json 后必须重新生成 .project-context.json 并运行 verify-repo.sh"
+  }
+}

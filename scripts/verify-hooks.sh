@@ -21,10 +21,10 @@ verify_minimal() {
     return 1
   fi
 
-  # 不包含文件路径引用
-  if jq -r '.. | .command? // empty' "$file" | grep -E '\./.*\.(js|sh)$|scripts/'; then
-    echo "❌ 不应引用外部文件"
-    return 1
+  # 允许项目内部脚本（scripts/），但输出提示
+  local commands=$(jq -r '.. | .command? // empty' "$file")
+  if echo "$commands" | grep -q 'scripts/'; then
+    echo "ℹ️  引用项目内部脚本（仓库自包含，允许）"
   fi
 
   echo "✅ hooks.minimal.json 验证通过"

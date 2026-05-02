@@ -103,17 +103,18 @@
 
 ## 会话交接机制
 
-每个非平凡项目根目录维护 `.omc/session-context.json` 作为跨会话状态锚点。
+项目使用三层上下文恢复机制：`project-state.json`（项目级事实源）> `.omc/session-context.json`（会话状态）> `docs/PROJECT-SUMMARY.md`（完整历史）。
 
 会话开始：
-1. 若存在 `.omc/session-context.json`，必须先读取
-2. 读取 `git log --oneline -5` 确认代码状态
-3. 读取 `.omc/feature-list.json`（若存在）
-4. 确认任务和约束后才开始工作
+1. 若存在 `project-state.json`，必须先读取（项目状态、当前焦点、下一步行动）
+2. 读取 `.omc/session-context.json`（最近会话细节、pending 项、验证证据）
+3. 读取 `git log --oneline -5` 确认代码状态
+4. 按需读取 `docs/PROJECT-SUMMARY.md`（完整历史，非必须）
+5. 确认任务和约束后才开始工作
 
 会话结束：
 1. 更新 `.omc/session-context.json`（含外部证据、任务状态、pending项）
-2. 更新 `.omc/feature-list.json`（若存在）
+2. 必要时更新 `project-state.json`（阶段完成、组件变化、当前焦点）
 3. git commit，message包含完成内容和外部证据
 
 ## 计划质量规则

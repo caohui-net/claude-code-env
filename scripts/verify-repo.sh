@@ -105,10 +105,49 @@ if [ -f "project-state.json" ] && [ -f ".project-context.json" ]; then
   if [ "$ps_updated" = "$pc_updated" ]; then
     success "更新时间一致"
   else
-    warn "更新时间不一致: $ps_updated vs $pc_updated"
+    error "更新时间不一致: $ps_updated vs $pc_updated (FAIL)"
+  fi
+
+  # 检查 phase id 列表一致性
+  ps_phases=$(jq -r '.phases[].id' project-state.json | sort -n | tr '\n' ',' | sed 's/,$//')
+  pc_phases=$(jq -r '.completed_phases[]' .project-context.json | sort -n | tr '\n' ',' | sed 's/,$//')
+  if [ "$ps_phases" = "$pc_phases" ]; then
+    success "阶段 ID 列表一致"
+  else
+    error "阶段 ID 列表不一致: [$ps_phases] vs [$pc_phases]"
+  fi
+
+  # 检查 summary 文件存在性
+  summary_file=$(jq -r '.project.summary_file' project-state.json)
+  if [ -f "$summary_file" ]; then
+    success "Summary 文件存在: $summary_file"
+  else
+    error "Summary 文件不存在: $summary_file"
+  fi
+
+  # 检查 documents 路径存在性
+  missing_docs=0
+  while IFS= read -r doc; do
+    if [ ! -f "$doc" ]; then
+      error "文档不存在: $doc"
+      ((missing_docs++))
+    fi
+  done < <(jq -r '.phases[].documents[]? // empty' project-state.json)
+  if [ $missing_docs -eq 0 ]; then
+    success "所有文档路径存在"
+  fi
+
+  # 检查 session-context 引用一致性
+  if [ -f ".omc/session-context.json" ]; then
+    sc_last_seen=$(jq -r '.project_state.last_seen_updated // "none"' .omc/session-context.json)
+    if [ "$sc_last_seen" = "$ps_updated" ]; then
+      success "session-context 引用一致"
+    else
+      error "session-context 引用不一致: $sc_last_seen vs $ps_updated"
+    fi
   fi
 else
-  warn "project-state.json 或 .project-context.json 不存在"
+  error "project-state.json 或 .project-context.json 不存在"
 fi
 echo
 
