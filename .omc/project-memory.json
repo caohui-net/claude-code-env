@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1777648368052,
+  "lastScanned": 1777739556124,
   "projectRoot": "/home/caohui/projects/claude-code-env",
   "techStack": {
     "languages": [],
@@ -36,7 +36,7 @@
       "path": "config",
       "purpose": "Configuration files",
       "fileCount": 1,
-      "lastAccessed": 1777648368046,
+      "lastAccessed": 1777739556118,
       "keyFiles": [
         "CLAUDE.global.md"
       ]
@@ -44,8 +44,8 @@
     "docs": {
       "path": "docs",
       "purpose": "Documentation",
-      "fileCount": 21,
-      "lastAccessed": 1777648368047,
+      "fileCount": 26,
+      "lastAccessed": 1777739556121,
       "keyFiles": [
         "DEPLOYMENT-PLAN.md",
         "PROJECT-SUMMARY.md",
@@ -58,7 +58,7 @@
       "path": "hooks",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1777648368049,
+      "lastAccessed": 1777739556121,
       "keyFiles": [
         "hooks.json"
       ]
@@ -67,7 +67,7 @@
       "path": "mcp",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1777648368049,
+      "lastAccessed": 1777739556121,
       "keyFiles": [
         "mcp-servers.json"
       ]
@@ -76,7 +76,7 @@
       "path": "profiles",
       "purpose": null,
       "fileCount": 3,
-      "lastAccessed": 1777648368049,
+      "lastAccessed": 1777739556122,
       "keyFiles": [
         "CLAUDE.agents.md",
         "CLAUDE.analysis.md",
@@ -87,14 +87,14 @@
       "path": "rules",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1777648368050,
+      "lastAccessed": 1777739556122,
       "keyFiles": []
     },
     "scripts": {
       "path": "scripts",
       "purpose": "Build/utility scripts",
       "fileCount": 1,
-      "lastAccessed": 1777648368050,
+      "lastAccessed": 1777739556123,
       "keyFiles": [
         "claude-mem-proxy.js"
       ]
@@ -103,35 +103,10 @@
       "path": "skills",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1777648368050,
+      "lastAccessed": 1777739556123,
       "keyFiles": []
     }
   },
-  "hotPaths": [
-    {
-      "path": "docs/PROJECT-SUMMARY.md",
-      "accessCount": 8,
-      "lastAccessed": 1777719767606,
-      "type": "file"
-    },
-    {
-      "path": "docs/lightpanda-integration-analysis.md",
-      "accessCount": 1,
-      "lastAccessed": 1777719449151,
-      "type": "file"
-    },
-    {
-      "path": ".mcp.json",
-      "accessCount": 1,
-      "lastAccessed": 1777719663658,
-      "type": "file"
-    },
-    {
-      "path": "docs/lightpanda-usage.md",
-      "accessCount": 1,
-      "lastAccessed": 1777719722138,
-      "type": "file"
-    }
-  ],
+  "hotPaths": [],
   "userDirectives": []
 }
