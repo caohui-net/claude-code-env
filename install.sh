@@ -229,7 +229,11 @@ main() {
   else
     echo -e "${YELLOW}跳过 hooks 安装 (--hooks none)${NC}"
   fi
-  
+
+  # 生成项目上下文文件
+  echo "生成项目上下文..."
+  bash scripts/generate-project-context.sh
+
   echo
   echo -e "${GREEN}=== 安装完成 ===${NC}"
   echo
