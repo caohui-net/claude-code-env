@@ -7,19 +7,16 @@
     "last_seen_updated": "2026-05-02"
   },
   "last_commit": "2956176",
-  "last_task": "补充插件官方来源链接",
+  "last_task": "修复PreToolUse:Bash hook错误",
   "pending": [],
   "verification_evidence": {
-    "plugin_sources_added": "所有4个插件添加GitHub链接",
-    "prerequisites_section": "OMC/claude-mem/Lightpanda/RTK都添加**Source**链接",
-    "sources_section": "所有插件添加完整GitHub链接和描述",
-    "links_verified": {
-      "omc": "https://github.com/Yeachan-Heo/oh-my-claudecode",
-      "claude_mem": "https://github.com/thedotmack/claude-mem",
-      "lightpanda": "https://github.com/lightpanda-io/browser",
-      "rtk": "https://github.com/rtk-ai/rtk"
-    },
-    "test_time": "2026-05-05T17:50:00Z"
+    "hook_error_fixed": "RTK hook移到PreToolUse末尾",
+    "problem": "RTK hook无stdout输出，导致后续node hooks接收空stdin，JSON.parse失败",
+    "solution": "调整hook顺序，RTK放最后（index 6），不影响后续hooks",
+    "verification": "测试Bash命令无hook错误",
+    "file_modified": "~/.claude/settings.json（全局配置，不在项目仓库）",
+    "backup": "~/.claude/settings.json.backup-*",
+    "test_time": "2026-05-05T18:04:45Z"
   },
   "key_files": {
     "summary": "docs/PROJECT-SUMMARY.md",
