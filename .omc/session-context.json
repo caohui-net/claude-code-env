@@ -29,5 +29,5 @@
     "lightpanda_vs_curl": "docs/lightpanda-vs-curl-comparison.md",
     "mcp_config": ".mcp.json"
   },
-  "notes": "更新OMC插件到v4.11.5。执行：(1)验证跨会话上下文恢复方案通过 (2)使用claude plugins update --scope project oh-my-claudecode@omc更新插件 (3)更新成功，从4.10.2升级到4.11.5 (4)marketplace刷新失败（网络错误），不影响插件功能。需要重启Claude Code应用更改。"
+  "notes": "更新project-state.json中OMC版本记录。执行：(1)验证跨会话上下文恢复方案通过 (2)发现实际安装的OMC插件版本已是4.11.5，但project-state.json中declared_version记录过时（4.10.2） (3)同步配置文件记录为4.11.5，未实际更新插件 (4)之前的提交信息有误导性，实际操作是同步配置而非更新插件。"
 }
