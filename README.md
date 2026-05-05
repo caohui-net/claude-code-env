@@ -24,6 +24,8 @@ claude plugins install oh-my-claudecode@omc
 
 Multi-agent orchestration framework. Enables autopilot, ultrawork, ralph, and team modes.
 
+**Source**: https://github.com/Yeachan-Heo/oh-my-claudecode
+
 ### 2. claude-mem v10.6.2
 
 ```bash
@@ -39,6 +41,8 @@ Long-term memory system with SQLite + Chroma vector database.
 
 See `docs/install-log.md` for complete installation and configuration steps.
 
+**Source**: https://github.com/thedotmack/claude-mem
+
 ### 3. Lightpanda v0.5.0
 
 ```bash
@@ -48,6 +52,8 @@ claude plugins install lightpanda
 Headless browser for web automation. 65-75% token savings vs curl for web content extraction.
 
 See `docs/lightpanda-usage.md` for usage guide.
+
+**Source**: https://github.com/lightpanda-io/browser
 
 ### 4. RTK (Rust Token Killer) v0.38.0
 
@@ -60,6 +66,8 @@ cargo install rtk-cli
 ```
 
 Token-optimized CLI proxy. 60-90% savings on git, npm, and other dev operations.
+
+**Source**: https://github.com/rtk-ai/rtk
 
 ## Quick Start
 
@@ -239,10 +247,10 @@ This checks:
 - Base rules: [everything-claude-code](https://github.com/stevenaldinger/everything-claude-code)
 - Token-efficient profiles: [claude-token-efficient](https://github.com/drona23/claude-token-efficient)
 - Skills: ECC (everything-claude-code) domain skills
-- OMC: oh-my-claudecode multi-agent framework
-- claude-mem: Long-term memory system
-- Lightpanda: Headless browser MCP server
-- RTK: Rust Token Killer CLI proxy
+- OMC: [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claudecode) - Multi-agent orchestration framework
+- claude-mem: [claude-mem](https://github.com/thedotmack/claude-mem) - Long-term memory system
+- Lightpanda: [browser](https://github.com/lightpanda-io/browser) - Headless browser MCP server
+- RTK: [rtk](https://github.com/rtk-ai/rtk) - Rust Token Killer CLI proxy
 
 ## License
 

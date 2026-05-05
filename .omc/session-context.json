@@ -7,18 +7,19 @@
     "last_seen_updated": "2026-05-02"
   },
   "last_commit": "2956176",
-  "last_task": "阶段1：安装闭环修复完成（ralph）",
+  "last_task": "补充插件官方来源链接",
   "pending": [],
   "verification_evidence": {
-    "phase1_completed": "所有4个story通过验证",
-    "story1": "scripts/check-prerequisites.sh创建并测试通过",
-    "story2": "README Quick Start改为三步流程",
-    "story3": "install.sh hooks幂等性修复（两次安装均6个hooks）",
-    "story4": "README claude-mem说明修正（明确npm安装只是第一步）",
-    "architect_verification": "APPROVED - 所有acceptance criteria满足",
-    "deslop_pass": "CLEAN - 无slop需清理",
-    "regression_tests": "通过 - check-prerequisites.sh运行正常，install.sh语法OK，hooks幂等性保持",
-    "test_time": "2026-05-05T17:41:00Z"
+    "plugin_sources_added": "所有4个插件添加GitHub链接",
+    "prerequisites_section": "OMC/claude-mem/Lightpanda/RTK都添加**Source**链接",
+    "sources_section": "所有插件添加完整GitHub链接和描述",
+    "links_verified": {
+      "omc": "https://github.com/Yeachan-Heo/oh-my-claudecode",
+      "claude_mem": "https://github.com/thedotmack/claude-mem",
+      "lightpanda": "https://github.com/lightpanda-io/browser",
+      "rtk": "https://github.com/rtk-ai/rtk"
+    },
+    "test_time": "2026-05-05T17:50:00Z"
   },
   "key_files": {
     "summary": "docs/PROJECT-SUMMARY.md",
