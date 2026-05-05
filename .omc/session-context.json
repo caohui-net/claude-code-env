@@ -6,17 +6,18 @@
     "schema_version": 1,
     "last_seen_updated": "2026-05-02"
   },
-  "last_commit": "2956176",
-  "last_task": "修复PreToolUse:Bash hook错误",
-  "pending": [],
+  "last_commit": "50fe2c7",
+  "last_task": "修复PreToolUse:Bash hook错误（根本原因修复）",
+  "pending": ["重启Claude Code验证修复"],
   "verification_evidence": {
-    "hook_error_fixed": "RTK hook移到PreToolUse末尾",
-    "problem": "RTK hook无stdout输出，导致后续node hooks接收空stdin，JSON.parse失败",
-    "solution": "调整hook顺序，RTK放最后（index 6），不影响后续hooks",
-    "verification": "测试Bash命令无hook错误",
-    "file_modified": "~/.claude/settings.json（全局配置，不在项目仓库）",
+    "root_cause": "313eeb3修改hooks过滤逻辑后，产生空matcher对象",
+    "problem_chain": "install.sh过滤旧hooks → 产生空matcher → RTK保留在前 → node hooks收到空stdin → JSON.parse('')失败 → [eval]:1错误",
+    "solution_1": "修改~/.claude/settings.json：删除空matcher，RTK移到最后（index 4）",
+    "solution_2": "修改install.sh:157：添加| map(select(.hooks | length > 0))过滤空matcher",
+    "verification": "需重启Claude Code使配置生效",
+    "files_modified": ["~/.claude/settings.json", "install.sh"],
     "backup": "~/.claude/settings.json.backup-*",
-    "test_time": "2026-05-05T18:04:45Z"
+    "fix_time": "2026-05-06T02:26:00Z"
   },
   "key_files": {
     "summary": "docs/PROJECT-SUMMARY.md",

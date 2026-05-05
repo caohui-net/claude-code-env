@@ -154,7 +154,7 @@ install_hooks() {
         key: .key,
         value: (.value | map(
           .hooks = (.hooks | map(select(.description // "" | test("\\[claude-code-env:") | not)))
-        ))
+        ) | map(select(.hooks | length > 0)))
       }) |
       from_entries
     )
