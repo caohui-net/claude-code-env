@@ -1,0 +1,65 @@
+{
+  "title": "阶段1：安装闭环修复",
+  "description": "修复全新用户安装路径，确保按README从零走通、重复执行不污染、无错误命令。与Codex讨论达成一致的P0修复方案。",
+  "priority": "P0",
+  "created_at": "2026-05-05T17:30:00Z",
+  "user_stories": [
+    {
+      "id": "story-1",
+      "title": "新增scripts/check-prerequisites.sh",
+      "description": "创建独立的前置条件检查脚本，检查4个必装插件和基础命令，输出清晰的缺失提示和安装指引",
+      "acceptance_criteria": [
+        "脚本存在于scripts/check-prerequisites.sh",
+        "检查OMC、claude-mem、Lightpanda、RTK四个插件",
+        "检查claude、jq、node基础命令",
+        "输出格式清晰（required/optional/service分类）",
+        "缺失时提供安装指引",
+        "运行脚本验证检测准确"
+      ],
+      "passes": true,
+      "completed_at": "2026-05-05T17:35:00Z"
+    },
+    {
+      "id": "story-2",
+      "title": "README Quick Start改三步",
+      "description": "重构README Quick Start章节为三步流程：检查前置条件、安装配置、验证安装",
+      "acceptance_criteria": [
+        "Quick Start章节结构清晰分三步",
+        "第一步：运行check-prerequisites.sh",
+        "第二步：运行install.sh",
+        "第三步：运行verify-installation.sh",
+        "每步有清晰说明和预期输出",
+        "验证：按步骤执行可走通"
+      ],
+      "passes": true,
+      "completed_at": "2026-05-05T17:38:00Z"
+    },
+    {
+      "id": "story-3",
+      "title": "修install.sh hooks幂等性",
+      "description": "修复install.sh中hooks merge逻辑，确保重复执行不叠加旧hook",
+      "acceptance_criteria": [
+        "修复install_hooks()函数中的description匹配逻辑",
+        "删除旧hook时正确匹配.hooks[]中的description",
+        "重复运行install.sh --hooks不叠加hook",
+        "验证：运行两次install.sh --hooks minimal，hooks数量不变"
+      ],
+      "passes": true,
+      "completed_at": "2026-05-05T17:40:00Z"
+    },
+    {
+      "id": "story-4",
+      "title": "修正claude-mem命令说明",
+      "description": "修正README中claude-mem安装说明，不误导用户以为npm安装即完成",
+      "acceptance_criteria": [
+        "README Prerequisites章节claude-mem部分修正",
+        "说明npm安装只是第一步",
+        "明确指向docs/install-log.md获取完整安装流程",
+        "说明需要配置worker、hooks等",
+        "验证：说明准确，不误导"
+      ],
+      "passes": true,
+      "completed_at": "2026-05-05T17:41:00Z"
+    }
+  ]
+}

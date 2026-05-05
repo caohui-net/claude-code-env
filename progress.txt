@@ -1,0 +1,14 @@
+# 阶段1：安装闭环修复 - 进度跟踪
+
+## 迭代 1 - 开始时间：2026-05-05T17:30:00Z
+
+### 当前状态
+- story-1: ✓ 完成 - scripts/check-prerequisites.sh已创建并测试通过
+- story-2: ✓ 完成 - README Quick Start改为三步流程
+- story-3: ✓ 完成 - install.sh hooks幂等性修复并验证（两次安装均6个hooks）
+- story-4: ✓ 完成 - README claude-mem说明修正（明确npm安装只是第一步）
+
+### 学习和发现
+- 与Codex讨论达成一致：分阶段执行、preflight独立脚本、版本说明暴露新鲜度
+- Codex建议：install.sh可保留轻提示，不做完整判断
+- story-1完成：check-prerequisites.sh检测准确，输出清晰（检测到2个缺失：claude-mem、Lightpanda）

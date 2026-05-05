@@ -148,12 +148,14 @@ install_hooks() {
   local current_settings=$(cat "$SETTINGS_FILE")
   
   local cleaned_settings=$(echo "$current_settings" | jq '
-    .hooks = (.hooks // {} | 
-      to_entries | 
+    .hooks = (.hooks // {} |
+      to_entries |
       map({
         key: .key,
-        value: (.value | map(select(.description // "" | test("\\[claude-code-env:") | not)))
-      }) | 
+        value: (.value | map(
+          .hooks = (.hooks | map(select(.description // "" | test("\\[claude-code-env:") | not)))
+        ))
+      }) |
       from_entries
     )
   ')

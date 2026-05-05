@@ -7,14 +7,18 @@
     "last_seen_updated": "2026-05-02"
   },
   "last_commit": "2956176",
-  "last_task": "README.md重构完成",
+  "last_task": "阶段1：安装闭环修复完成（ralph）",
   "pending": [],
   "verification_evidence": {
-    "readme_restructure_completed": "README.md从'Personal configuration'重新定位为'Optimization Environment'",
-    "key_changes": "Prerequisites前置、插件安装命令、install.sh职责边界、全局化效果说明",
-    "codex_discussion": "与Codex讨论达成一致方向：可复制模板、插件必装前置、配置全局部署",
-    "verification_method": "Read工具验证章节结构和关键内容",
-    "test_time": "2026-05-05T17:13:53Z"
+    "phase1_completed": "所有4个story通过验证",
+    "story1": "scripts/check-prerequisites.sh创建并测试通过",
+    "story2": "README Quick Start改为三步流程",
+    "story3": "install.sh hooks幂等性修复（两次安装均6个hooks）",
+    "story4": "README claude-mem说明修正（明确npm安装只是第一步）",
+    "architect_verification": "APPROVED - 所有acceptance criteria满足",
+    "deslop_pass": "CLEAN - 无slop需清理",
+    "regression_tests": "通过 - check-prerequisites.sh运行正常，install.sh语法OK，hooks幂等性保持",
+    "test_time": "2026-05-05T17:41:00Z"
   },
   "key_files": {
     "summary": "docs/PROJECT-SUMMARY.md",

@@ -30,9 +30,14 @@ Multi-agent orchestration framework. Enables autopilot, ultrawork, ralph, and te
 npm install -g claude-mem@10.6.2
 ```
 
-Long-term memory system with SQLite + Chroma vector database. Auto-starts via `~/.bashrc`.
+Long-term memory system with SQLite + Chroma vector database.
 
-See `docs/install-log.md` for detailed setup and remote access configuration.
+**Note**: npm installation is only the first step. Complete setup requires:
+- Worker configuration in `~/.claude/settings.json`
+- Auto-start configuration in `~/.bashrc`
+- Optional remote access setup
+
+See `docs/install-log.md` for complete installation and configuration steps.
 
 ### 3. Lightpanda v0.5.0
 
@@ -58,15 +63,49 @@ Token-optimized CLI proxy. 60-90% savings on git, npm, and other dev operations.
 
 ## Quick Start
 
-**After installing all plugins above:**
+### Step 1: Check Prerequisites
+
+First, verify all required plugins and commands are installed:
 
 ```bash
 git clone https://github.com/caohui-net/claude-code-env ~/projects/claude-code-env
 cd ~/projects/claude-code-env
+bash scripts/check-prerequisites.sh
+```
+
+If any required components are missing, install them following the [Prerequisites](#prerequisites) section above.
+
+### Step 2: Install Configuration
+
+Once all prerequisites are met, deploy the global configuration:
+
+```bash
 bash install.sh
 ```
 
+This will:
+- Copy rules and skills to `~/.claude/`
+- Optionally merge hooks (use `--hooks minimal` or `--hooks omc`)
+- Back up existing configurations
+- Generate project context files
+
 Then edit `~/.claude/settings.json` and set your `ANTHROPIC_AUTH_TOKEN`.
+
+### Step 3: Verify Installation
+
+Confirm everything is set up correctly:
+
+```bash
+bash scripts/verify-installation.sh
+```
+
+This checks:
+- Plugin installations (OMC, claude-mem, Lightpanda, RTK)
+- Configuration files in `~/.claude/`
+- MCP server configurations
+- Hook integrations
+
+Expected output: All required components should show ✓ (green checkmark).
 
 ## What install.sh Does
 
