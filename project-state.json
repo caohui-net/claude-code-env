@@ -103,7 +103,7 @@
   "components": {
     "omc": {
       "status": "integrated",
-      "declared_version": "4.10.2",
+      "declared_version": "4.11.5",
       "role": "orchestration"
     },
     "claude_mem": {
