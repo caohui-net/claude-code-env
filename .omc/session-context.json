@@ -1,36 +1,50 @@
 {
-  "session_id": "current-session-2026-05-05",
-  "started_at": "2026-05-05T15:28:58Z",
+  "session_id": "fix-hook-escaping-2026-05-05",
+  "started_at": "2026-05-05T19:11:00Z",
   "project_state": {
     "path": "project-state.json",
     "schema_version": 1,
-    "last_seen_updated": "2026-05-02"
+    "last_seen_updated": "2026-05-05"
   },
-  "last_commit": "50fe2c7",
-  "last_task": "修复PreToolUse:Bash hook错误（根本原因修复）",
-  "pending": ["重启Claude Code验证修复"],
+  "last_commit": "88976d2",
+  "last_task": "修复PreToolUse:Bash hook多层转义错误",
+  "pending": [],
   "verification_evidence": {
-    "root_cause": "313eeb3修改hooks过滤逻辑后，产生空matcher对象",
-    "problem_chain": "install.sh过滤旧hooks → 产生空matcher → RTK保留在前 → node hooks收到空stdin → JSON.parse('')失败 → [eval]:1错误",
-    "solution_1": "修改~/.claude/settings.json：删除空matcher，RTK移到最后（index 4）",
-    "solution_2": "修改install.sh:157：添加| map(select(.hooks | length > 0))过滤空matcher",
-    "verification": "需重启Claude Code使配置生效",
-    "files_modified": ["~/.claude/settings.json", "install.sh"],
-    "backup": "~/.claude/settings.json.backup-*",
-    "fix_time": "2026-05-06T02:26:00Z"
+    "root_cause": "settings.json中PreToolUse:Bash hook使用node -e执行JavaScript，正则表达式\\b单词边界需要多层转义（JSON→bash→node），转义层级错配导致[eval]:1语法错误",
+    "escaping_chain": "JSON: \\\\\\\\b → bash: \\\\b → node: \\b → JavaScript字符串中\\b=退格符(非正则边界) → 语法错误",
+    "problem_hooks": [
+      "Hook1: Dev server blocker (line 52)",
+      "Hook2: Tmux reminder (line 62)"
+    ],
+    "solution": "移除\\b单词边界，改用完整匹配模式",
+    "changes": {
+      "hook1_before": "/(npm run dev\\\\\\\\b|pnpm( run)? dev\\\\\\\\b|...)/",
+      "hook1_after": "/(npm run dev|pnpm dev|pnpm run dev|yarn dev|bun run dev)/",
+      "hook2_before": "/(npm (install|test)|...make\\\\\\\\b|docker\\\\\\\\b|...)/",
+      "hook2_after": "/(npm install|npm test|...make|docker|...)/",
+      "rtk_wrapper": "添加JSON验证防御（jq empty检查）"
+    },
+    "test_results": {
+      "isolated_test": "手动测试hook脚本通过 ✓",
+      "real_execution": "用户实际执行ls命令，错误消失 ✓"
+    },
+    "verification": "用户确认错误消失",
+    "files_modified": [
+      "~/.claude/settings.json (简化hook1和hook2正则)",
+      "~/.claude/hooks/rtk-wrapper.sh (添加JSON验证)",
+      ".wolf/cerebrum.md (记录错误教训)"
+    ],
+    "fix_time": "2026-05-05T19:30:00Z"
+  },
+  "lessons_learned": {
+    "technical": "避免在hook中使用需要复杂转义的正则模式，保持hook代码简单",
+    "behavioral": "隔离测试≠真实环境验证，声称'已修复'前必须用户确认"
   },
   "key_files": {
     "summary": "docs/PROJECT-SUMMARY.md",
-    "install": "install.sh",
-    "readme": "README.md",
-    "profiles": "profiles/",
-    "session_context": ".omc/session-context.json",
-    "auto_memory": "~/.claude/projects/-home-caohui-projects-claude-code-env/memory/MEMORY.md",
-    "lightpanda_analysis": "docs/lightpanda-integration-analysis.md",
-    "lightpanda_usage": "docs/lightpanda-usage.md",
-    "lightpanda_ai_guide": "docs/lightpanda-ai-usage-guide.md",
-    "lightpanda_vs_curl": "docs/lightpanda-vs-curl-comparison.md",
-    "mcp_config": ".mcp.json"
+    "cerebrum": ".wolf/cerebrum.md",
+    "settings": "~/.claude/settings.json",
+    "rtk_wrapper": "~/.claude/hooks/rtk-wrapper.sh"
   },
-  "notes": "README.md重构完成。改动：(1)标题改为'Claude Code Optimization Environment' (2)副标题强调'production-ready template with verified plugins' (3)Prerequisites章节前置，列出4个必装插件（OMC 4.11.5/claude-mem 10.6.2/Lightpanda 0.5.0/RTK 0.38.0）及安装命令 (4)新增'What install.sh Does'章节明确职责边界（仅配置部署，不含插件安装） (5)新增'Global Effect'章节强调所有项目全局受益。与Codex讨论达成一致方向后执行。project-state.json已添加阶段14记录。"
+  "notes": "本次修复的根本原因是多层转义问题，与之前的RTK空输出问题不同。已记录到cerebrum.md的Do-Not-Repeat部分。"
 }
