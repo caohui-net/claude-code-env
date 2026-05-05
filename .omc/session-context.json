@@ -6,15 +6,15 @@
     "schema_version": 1,
     "last_seen_updated": "2026-05-02"
   },
-  "last_commit": "85a60ce",
-  "last_task": "更新OMC插件到v4.11.5",
+  "last_commit": "2956176",
+  "last_task": "README.md重构完成",
   "pending": [],
   "verification_evidence": {
-    "omc_update_completed": "OMC插件从4.10.2更新到4.11.5",
-    "update_command": "claude plugins update --scope project oh-my-claudecode@omc",
-    "update_status": "成功，需要重启Claude Code应用更改",
-    "marketplace_warning": "marketplace刷新失败（网络错误），不影响插件功能",
-    "test_time": "2026-05-05T15:52:30Z"
+    "readme_restructure_completed": "README.md从'Personal configuration'重新定位为'Optimization Environment'",
+    "key_changes": "Prerequisites前置、插件安装命令、install.sh职责边界、全局化效果说明",
+    "codex_discussion": "与Codex讨论达成一致方向：可复制模板、插件必装前置、配置全局部署",
+    "verification_method": "Read工具验证章节结构和关键内容",
+    "test_time": "2026-05-05T17:13:53Z"
   },
   "key_files": {
     "summary": "docs/PROJECT-SUMMARY.md",
@@ -29,5 +29,5 @@
     "lightpanda_vs_curl": "docs/lightpanda-vs-curl-comparison.md",
     "mcp_config": ".mcp.json"
   },
-  "notes": "更新project-state.json中OMC版本记录。执行：(1)验证跨会话上下文恢复方案通过 (2)发现实际安装的OMC插件版本已是4.11.5，但project-state.json中declared_version记录过时（4.10.2） (3)同步配置文件记录为4.11.5，未实际更新插件 (4)之前的提交信息有误导性，实际操作是同步配置而非更新插件。"
+  "notes": "README.md重构完成。改动：(1)标题改为'Claude Code Optimization Environment' (2)副标题强调'production-ready template with verified plugins' (3)Prerequisites章节前置，列出4个必装插件（OMC 4.11.5/claude-mem 10.6.2/Lightpanda 0.5.0/RTK 0.38.0）及安装命令 (4)新增'What install.sh Does'章节明确职责边界（仅配置部署，不含插件安装） (5)新增'Global Effect'章节强调所有项目全局受益。与Codex讨论达成一致方向后执行。project-state.json已添加阶段14记录。"
 }

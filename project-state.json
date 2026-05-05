@@ -98,6 +98,13 @@
       "completed_at": "2026-05-02",
       "summary": "使用 Codex 评估项目，平均分 6.2/10",
       "documents": ["docs/codex-evaluation-report-2026-05-02.md"]
+    },
+    {
+      "id": 14,
+      "name": "README.md 重构",
+      "completed_at": "2026-05-05",
+      "summary": "重新定位为可复制优化环境模板，插件前置，明确install.sh职责",
+      "documents": []
     }
   ],
   "components": {
